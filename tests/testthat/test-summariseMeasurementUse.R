@@ -11,13 +11,13 @@ test_that("summariseMeasurementUse works", {
   expect_equal(
     omopgenerics::settings(res),
     dplyr::tibble(
-      result_id = 1:3L,
-      result_type = c("measurement_timings", "measurement_value_as_numeric", "measurement_value_as_concept"),
+      result_id = 1:4L,
+      result_type = c("measurement_timings", "measurement_value_as_numeric", "measurement_value_as_concept", "measurement_source_concept_and_value"),
       package_name = "MeasurementDiagnostics",
       package_version = as.character(utils::packageVersion("MeasurementDiagnostics")),
-      group = c("codelist_name", "codelist_name &&& concept_name &&& unit_concept_name", "codelist_name &&& concept_name"),
-      strata = c(rep("sex &&& age_group", 3)),
-      additional = c("", "concept_id &&& unit_concept_id &&& domain_id", "concept_id &&& value_as_concept_id &&& domain_id"),
+      group = c("codelist_name", "codelist_name &&& concept_name &&& unit_concept_name", "codelist_name &&& concept_name", "codelist_name &&& concept_name"),
+      strata = c(rep("sex &&& age_group", 4)),
+      additional = c("", "concept_id &&& unit_concept_id &&& domain_id", "concept_id &&& value_as_concept_id &&& domain_id", "concept_id &&& source_concept_id &&& domain_id"),
       min_cell_count = "0"
     )
   )
@@ -161,13 +161,13 @@ test_that("summariseMeasurementUse straifications work", {
   expect_equal(
     omopgenerics::settings(res),
     dplyr::tibble(
-      result_id = 1:3L,
-      result_type = c("measurement_timings", "measurement_value_as_numeric", "measurement_value_as_concept"),
+      result_id = 1:4L,
+      result_type = c("measurement_timings", "measurement_value_as_numeric", "measurement_value_as_concept", "measurement_source_concept_and_value"),
       package_name = "MeasurementDiagnostics",
       package_version = as.character(utils::packageVersion("MeasurementDiagnostics")),
-      group = c("codelist_name", "codelist_name &&& unit_concept_name", "codelist_name"),
-      strata = c(rep("", 3)),
-      additional = c("", "unit_concept_id", "value_as_concept_id"),
+      group = c("codelist_name", "codelist_name &&& unit_concept_name", "codelist_name", "codelist_name"),
+      strata = c(rep("", 4)),
+      additional = c("", "unit_concept_id", "value_as_concept_id", "source_concept_id"),
       min_cell_count = "0"
     )
   )
